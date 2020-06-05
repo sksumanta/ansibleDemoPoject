@@ -10,11 +10,11 @@
         register: dirStat
       - debug: 
           msg:
-          - " theEnvionment is  {{theEnv}}"
+          - " theEnvionment is  {{tier}}"
 
       - name: create the directory if not exist
         file:
-          path: /tmp/{{theEnv}}/myProject/scm   # "{{ staging.scm }}"
+          path: /tmp/{{tier}}/myProject/scm   # "{{ staging.scm }}"
           recurse: true
           state: directory
         when: dirStat.stat.exists ==  false
