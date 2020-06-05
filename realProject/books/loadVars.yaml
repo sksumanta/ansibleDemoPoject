@@ -1,0 +1,8 @@
+---
+#########################################################
+# Top-Level Playbook for gathering controled files
+#########################################################
+
+- hosts: adminserver
+  roles:
+    - ../roles/loadVars

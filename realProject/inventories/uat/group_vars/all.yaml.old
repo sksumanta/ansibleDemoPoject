@@ -1,0 +1,57 @@
+---
+#########################################################
+# Common configuration
+#########################################################
+tier: uat
+
+scm:
+    purge: false
+    protocol: gitscm
+    source: "https://github.com/sksumanta/cicdPipeline.git/{{ tier }}"
+    branch: master
+    proxy: false
+    certs:
+        validate: false
+
+#emails:
+#    alert:
+#        from: Ansible <do_not_reply@mckesson.com>
+#        to: QA - GRP 
+
+#staging:
+#    scm: /tmp/{{ myRX_domain | default("working") }}/scm/{{ tier }}
+#    dir: /tmp/{{ myRX_domain | default("working") }}
+#    software: /usr/local/myprojectRX/software
+#proxy:
+#    url: abrams-admin.myprojectRX.ndchealth.com
+#    port: 10000
+	
+#software:
+#    source: http://hoiartifacts.blob.core.windows.net
+#    path: /binaries/
+#    param1: "?sv=2017-04-17&ss=bfqt&srt=sco&sp=rwdlacup&se=2033-01-13T03:39:54Z&st=2018-01-12T19:39:54Z&spr=https,http"
+#    param2: "&sig=RuanRJYbDn21arFq0ZWeSh3%2F5G5RmovIwWedtVYDWNs%3D"
+#    param3:
+#    proxy: true
+#    certs:
+#        validate: false
+
+#vip_url: http://myRX-hosting-qa-vip.myprojectRX.ndchealth.com:15200
+
+#scm:
+#    purge:
+#    protocol: local
+#    source:
+#    branch:
+#    proxy:
+#    certs:
+#        validate:
+#software:
+#    source: file:///tmp
+#    path: /
+#    param1:
+#    param2:
+#    param3:
+#    proxy: false
+#    certs:
+#        validate: false

@@ -1,0 +1,6 @@
+---
+#########################################################
+# Source Control Management Tasks
+#########################################################
+  - name: Download the artefact from the artifactory
+    include_tasks: pullBuild.yaml

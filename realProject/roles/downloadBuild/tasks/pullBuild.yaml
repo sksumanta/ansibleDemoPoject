@@ -1,0 +1,15 @@
+---
+# download artifact from nexus repository
+
+  - debug:
+      msg: value of the buildNo is {{ buildNo }}
+
+  - name: download artifact using uri command
+    get_url:
+       url: "{{ TheArtifactURL }}/{{ buildNo }}/gameoflife-{{ buildNo }}.war"
+       url_username: ujam
+       url_password: suman345
+       force_basic_auth: yes
+       dest: "{{ staging.build }}"
+       mode: 0775
+

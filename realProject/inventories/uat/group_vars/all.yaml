@@ -1,0 +1,30 @@
+---
+#########################################################
+# Common configuration
+#########################################################
+tier: uat
+
+scm:         # From which GitHub we need to pull the yaml file
+    purge: false
+    protocol: gitscm
+    source: "https://github.com/sksumanta/{{ tier }}.git"
+    branch: master
+#    branch: theUat
+    proxy: false
+    certs:
+        validate: false
+
+staging:    # Where to download the file while executing ansible 
+    scm: /tmp/{{ tier }}/myProject/scm
+#   scm: /tmp/{{ tier }}/scm/{{ myDomain | default("working") }}
+    build: /tmp/{{ tier }}/myProject
+    dir: /tmp/{{ myDomain | default("working") }}
+    software: /usr/local/myprojectRX/software
+
+tomcat:
+  software:
+    source: https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.11/bin/apache-tomcat-9.0.11.tar.gz
+    certs:
+      validate: false
+
+TheArtifactURL: http://192.168.33.99:8081/repository/gameOfLife_{{ tier }}/com/wakaleo/gameoflife/gameoflife

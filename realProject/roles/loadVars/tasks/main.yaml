@@ -1,0 +1,14 @@
+---
+#########################################################
+# Load variables from files
+#########################################################
+- name: Load the {{ tier }} tier deployment variables
+  include_vars:
+    dir: '{{ staging.scm }}/{{ mydomain }}'
+    files_matching: "{{ mydomain | default('skipping') }}.yaml"
+
+- name: check the correct vriable file has been loaded
+  debug:
+    msg: the value of theEnv_domain "{{ mydomain }}/{{ mydomain | default('skipping') }}.yaml"
+    msg: theEnv_trexoneweb "{{ theEnv_trexoneweb }}"
+

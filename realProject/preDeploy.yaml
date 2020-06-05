@@ -1,0 +1,6 @@
+---
+############### The script need to run for the deployment ##########################################
+
+- import_playbook: books/source_control.yaml
+- import_playbook: books/loadvars.yaml
+- import_playbook: books/downloadBuild.yaml

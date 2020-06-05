@@ -1,0 +1,5 @@
+---
+############### The script need to run for the deployment ##########################################
+
+- import_playbook: books/tomcat_setup.yaml
+- import_playbook: books/kickoff.yaml

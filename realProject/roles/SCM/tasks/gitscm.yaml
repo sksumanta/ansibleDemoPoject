@@ -1,0 +1,47 @@
+---
+
+# Download specific file from git 
+
+  - name: check the directory exist or not and create if not exist
+    block:
+      - name: check the directory exist or not
+        stat:
+          path: "{{ staging.scm }}"
+        register: dirStat
+      - debug: 
+          msg:
+          - " theEnvionment is  {{theEnv}}"
+
+      - name: create the directory if not exist
+        file:
+          path: /tmp/{{theEnv}}/myProject/scm   # "{{ staging.scm }}"
+          recurse: true
+          state: directory
+        when: dirStat.stat.exists ==  false
+
+  - name: Pull deployment files from git - purge and retry if first attempt fails
+    block:
+      - name: Get the {{ tier }} tier deployment files via git - branch [ {{ scm.branch }} ]
+        git:
+          repo: "{{ scm.source }}"
+          dest: "{{ staging.scm }}"
+          update: yes
+          version: "{{ scm.branch }}"
+    rescue:
+      - debug:
+          msg: 'Git checkout of SCM files failed. Purging destination and retrying'
+      - name: Purge the scm staging directory - [ Forced ] - {{ staging.scm }}
+        file:
+          path: "{{ staging.scm }}"
+          state: absent
+      - name: Create the scm staging directory - [ Forced ] - {{ staging.scm }}
+        file:
+          path: "{{ staging.scm }}"
+          state: directory
+      - name: Retry - Get the {{ tier }} tier deployment files via git - branch [ {{ scm.branch }} ]
+        git:
+          repo: "{{ scm.source }}"
+          dest: "{{ staging.scm }}"
+          update: yes
+          version: "{{ scm.branch }}"
+

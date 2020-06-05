@@ -1,0 +1,4 @@
+---
+############### The script need to run for the deployment ##########################################
+
+- import_playbook: books/deployBuild.yaml

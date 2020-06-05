@@ -1,0 +1,20 @@
+---
+#
+# Hosts ( in from of hostnames or IP addresses ) must be specified under different groups
+# variables are defined under a host
+#
+all:
+  children:
+    adminserver:
+      hosts:
+        192.168.33.60:
+          ansible_connection: local
+          ansible_user: ujam
+    jenkinsserver:
+      hosts:
+        192.168.33.95:
+          ansible_user: ujam
+    appserver:
+      hosts:
+        192.168.33.99:
+          ansible_user: ujam 

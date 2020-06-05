@@ -1,0 +1,14 @@
+---
+#########################################################
+# Top-Level Playbook for gathering controled files
+#########################################################
+
+- hosts: appserver
+
+  #remote_user: root
+  #remote_user: ujam
+  become: true
+  become_method: sudo
+
+  roles:
+    - ../roles/deployBuild

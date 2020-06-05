@@ -1,0 +1,9 @@
+---
+#########################################################
+# Top-Level Playbook for gathering controled files
+#########################################################
+
+- hosts: adminserver
+#  tags: [ checkout, stage-web ]
+  roles:
+    - ../roles/SCM

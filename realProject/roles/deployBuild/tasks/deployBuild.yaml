@@ -1,0 +1,19 @@
+---
+
+  - name: check the path present in the remote machine or not if not create it
+    block:
+    - name: check tomcat directory
+      stat:
+        path: /opt/apache-tomcat/apache-tomcat-9.0.11/webapps/gameoflife
+      register: dirStat
+       
+    - name: create tomcat directory if not exist
+      file:
+        path: /opt/apache-tomcat/apache-tomcat-9.0.11/webapps/gameoflife
+        recurse: true
+        state: directory
+      when: dirStat.stat.exists == false
+  
+  - name: Copy a war file to remote tomcat machine
+    synchronize: src="{{ staging.build }}/gameoflife-{{ buildNo }}.war"  dest=/opt/apache-tomcat/apache-tomcat-9.0.11/webapps/gameoflife
+    delegate_to: 192.168.33.60

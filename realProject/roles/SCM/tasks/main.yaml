@@ -1,0 +1,12 @@
+---
+#########################################################
+# Source Control Management Tasks
+#########################################################
+  - name: Determine SCM location based on environment settings
+
+    include_tasks: "{{ scm.protocol }}.yaml"
+    #when: "{{ theEnv }}" is matched "{{ tier }}"
+
+  - debug:
+      msg: 
+      - "scm source value is {{ scm.source }}"
